@@ -50,6 +50,8 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
         hasilPenghematan = new javax.swing.JTextField();
         buttonRiwayat = new javax.swing.JButton();
         hasilDiskonSlider = new javax.swing.JLabel();
+        fieldKupon = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         dialogRiwayat.getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -153,7 +155,7 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
         hasilAkhir.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(14, 0, 0, 8);
@@ -168,7 +170,7 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 4, 0);
         panelUtama.add(buttonHitung, gridBagConstraints);
@@ -176,7 +178,7 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
         jLabel4.setText("Harga Akhir");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(14, 8, 0, 0);
         panelUtama.add(jLabel4, gridBagConstraints);
@@ -184,7 +186,7 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
         jLabel5.setText("Jumlah Penghematan");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(7, 8, 7, 0);
         panelUtama.add(jLabel5, gridBagConstraints);
@@ -192,7 +194,7 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
         hasilPenghematan.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(7, 0, 7, 8);
@@ -207,7 +209,7 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelUtama.add(buttonRiwayat, gridBagConstraints);
@@ -219,6 +221,20 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 9, 0);
         panelUtama.add(hasilDiskonSlider, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 100;
+        panelUtama.add(fieldKupon, gridBagConstraints);
+
+        jLabel7.setText("Kupon");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 2, 0);
+        panelUtama.add(jLabel7, gridBagConstraints);
 
         getContentPane().add(panelUtama, java.awt.BorderLayout.CENTER);
 
@@ -238,6 +254,13 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
             // Ambil nilai diskon dari sliderDiskon (misalnya sliderDiskon.getValue() mengembalikan nilai dalam persen)
             int diskonPersen = sliderDiskon.getValue();
             
+            // Cek apakah kupon berisi "Berjuang"
+            String kupon = fieldKupon.getText().trim();
+            if (kupon.equalsIgnoreCase("Berjuang")) {
+                // Jika kupon berisi "Berjuang", beri diskon tambahan 10%
+                diskonPersen += 10;
+            }
+            
             // Hitung jumlah pengehematan
             double penghematan = hargaAsli * diskonPersen / 100.0;
             
@@ -250,8 +273,9 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
             
             // Mencatat riwayat perhitungan di JTextArea1
             perhitunganCount++;  // Increment nomor urut perhitungan
-            String riwayat = String.format("Perhitungan #%d: Harga Asli: %.2f, Diskon: %d%%, Harga Akhir: %.2f, Penghematan: %.2f%n", 
-                                           perhitunganCount, hargaAsli, diskonPersen, hargaAkhir, penghematan);
+             // Menambahkan riwayat ke jTextArea1
+            String riwayat = String.format("Perhitungan #%d: Harga Asli: %.2f, Diskon: %d%%, Kupon: %s, Harga Akhir: %.2f, Penghematan: %.2f%n", 
+                                           perhitunganCount, hargaAsli, diskonPersen, kupon, hargaAkhir, penghematan);
             jTextArea1.append(riwayat);  // Menambahkan riwayat ke JTextArea1
         } catch (NumberFormatException ex) {
             jOptionPane1.showMessageDialog(null, "Input harga asli tidak valid!", "Error", jOptionPane1.ERROR_MESSAGE);
@@ -328,6 +352,7 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboDiskon;
     private javax.swing.JDialog dialogRiwayat;
     private javax.swing.JTextField fieldHargaAsli;
+    private javax.swing.JTextField fieldKupon;
     private javax.swing.JTextField hasilAkhir;
     private javax.swing.JLabel hasilDiskonSlider;
     private javax.swing.JTextField hasilPenghematan;
@@ -338,6 +363,7 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
