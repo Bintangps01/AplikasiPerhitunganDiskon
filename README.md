@@ -4,7 +4,7 @@
 Sebuah aplikasi yang dapat digunakan untuk menghitung diskon dari sebuah harga, yang ditujukan untuk menyelesaikan Tugas PBO ke-3.
 
 #### Source Code PerhitunganDiskonFrame.java
-```
+```java
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -383,6 +383,10 @@ public class PerhitunganDiskonFrame extends javax.swing.JFrame {
 - Fitur Kupon ("Berjuang") untuk mendapatkan diskon tambahan 10%
 - Slider sebagai alternatif pemilihan diskon
 - Riwayat Perhitungan Diskon
+
+## Screenshot
+![{893B4D2E-06D6-4847-B2EB-F829C9CA5E9C}](https://github.com/user-attachments/assets/94011fa3-4f74-4a91-9c8e-580bf39e62df)
+
 ## Referensi
 
  - [Modul PBO2 Tugas 1](https://drive.google.com/file/d/10ywJ-nxZMnQFSehVTw9HdCJO2yvsFIBS/view)
